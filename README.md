@@ -1,5 +1,7 @@
-# keep-notes
+# Flutter keep notes
 
-A new Flutter project.
+A TODO notes app
 
 ## Getting Started
+
+This app use shared preference for storing data
