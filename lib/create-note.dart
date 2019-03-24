@@ -32,7 +32,7 @@ class _CreateNoteState extends State<CreateNote> {
               children: <Widget>[
                 TextFormField(
                   onSaved: (s) => note.title = s,
-                  validator:(s)=>(s.length>5?null:'Note A Valid Title'),
+                  validator:(s)=>(s.length>5?null:'Write Something'),
                   maxLength: 50,
                   textCapitalization: TextCapitalization.words,
                   keyboardType: TextInputType.text,
@@ -46,6 +46,7 @@ class _CreateNoteState extends State<CreateNote> {
                 ),
                 TextFormField(
                   onSaved: (s) => note.notes = s,
+                  validator: (s)=>s.length>2?null:'Write Some Note',
                   textCapitalization: TextCapitalization.sentences,
                   maxLines: 10,
                   maxLength: 1000,

@@ -10,19 +10,24 @@ class ShowNote extends StatelessWidget {
       appBar: AppBar(
         title: Text('Show Notes'),
       ),
-      body: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text(BaseWidget.of(context).bloc.l[index].title),
-          ),
-          Text(BaseWidget.of(context).bloc.l[index].notes)
-        ],
+      body: Container(
+         padding: EdgeInsets.all(8),
+        color: Theme.of(context).backgroundColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text(BaseWidget.of(context).bloc.l[index].title,style: Theme.of(context).textTheme.title,),
+            Divider(),
+            Text(BaseWidget.of(context).bloc.l[index].notes,style: Theme.of(context).textTheme.subtitle)
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pop(context);
         },
-        child: Icon(Icons.backspace),
+        backgroundColor: Theme.of(context).buttonColor,
+        child: Icon(Icons.backspace,color: Theme.of(context).iconTheme.color),
       ),
     );
   }

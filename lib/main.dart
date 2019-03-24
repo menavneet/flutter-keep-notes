@@ -37,51 +37,65 @@ class _MyAppState extends State<MyApp> {
         ],
       ),
       body: Container(
-          child: StreamBuilder<List<Note>>(
-              stream: BaseWidget.of(context).bloc.listStream,
-              builder: (context, snapshot) {
-                return ListView.builder(
-                  itemCount: snapshot.data?.length ?? 0,
-                  itemBuilder: (context, i) => Dismissible(
-                      background: Container(
-                        decoration: BoxDecoration(color: Colors.red[200]),
-                      ),
-                      confirmDismiss: (direction) {
-                        return showDialog<bool>(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text("Delete ?"),
-                                content: Text('Are you really want to delete'),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text('Cancel'),
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(false),
-                                  ),
-                                  FlatButton(
-                                    child: Text('Confirm'),
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(true),
-                                  )
-                                ],
-                              );
-                            });
-                      },
-                      key: Key('list$i'),
-                      child: ListTile(
-                        leading: Icon(Icons.mode_edit),
-                        title: Text(snapshot.data[i].title),
-                        onTap: () => Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return ShowNote(index: i);
-                            })),
-                        subtitle: Text(DateTime.fromMicrosecondsSinceEpoch(
-                                int.parse(snapshot.data[i].time))
-                            .toString()),
-                      )),
-                );
-              })),
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                     child: StreamBuilder<List<Note>>(
+                    stream: BaseWidget.of(context).bloc.listStream,
+                    builder: (context, snapshot) {
+                      return ListView.builder(
+                        itemCount: snapshot.data?.length ?? 0,
+                        itemBuilder: (context, i) => Dismissible(
+                            background: Container(
+                              decoration: BoxDecoration(color: Colors.red[200]),
+                            ),
+                            confirmDismiss: (direction) {
+                              return showDialog<bool>(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Delete ?"),
+                                      content: Text('Are you really want to delete'),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text('Cancel'),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(false),
+                                        ),
+                                        FlatButton(
+                                          child: Text('Confirm'),
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(true),
+                                        )
+                                      ],
+                                    );
+                                  });
+                            },
+                            key: Key('list$i'),
+                            child: ListTile(
+
+                               leading:CircleAvatar(backgroundColor:Theme.of(context).buttonColor,child: Icon(Icons.edit), ),
+                              title: Text(snapshot.data[i].title),
+                              onTap: () => Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return ShowNote(index: i);
+                                  })),
+                              subtitle: Text(DateTime.fromMicrosecondsSinceEpoch(
+                                      int.parse(snapshot.data[i].time))
+                                  .toString()),
+                            )),
+                      );
+                    }),
+              ),
+              Container(
+                color: Colors.black12,
+                width: double.infinity,
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(vertical:8),
+                child: Text('Swip Left / Right For remove notes'),
+              )
+            ],
+          )),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).buttonColor,
         child: Icon(
