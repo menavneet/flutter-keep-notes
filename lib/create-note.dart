@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Note.dart';
+import 'note.dart';
 
 class CreateNote extends StatefulWidget {
   @override
@@ -32,7 +32,7 @@ class _CreateNoteState extends State<CreateNote> {
               children: <Widget>[
                 TextFormField(
                   onSaved: (s) => note.title = s,
-                  validator:(s)=>(s.length>5?null:'Write Something'),
+                  validator:(s)=>(s.length>2?null:'Write Something'),
                   maxLength: 50,
                   textCapitalization: TextCapitalization.words,
                   keyboardType: TextInputType.text,
