@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'Note.dart';
+import 'note.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class Bloc {
 List<Note> l;

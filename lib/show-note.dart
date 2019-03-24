@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'base.dart';
+import 'note.dart';
 
 class ShowNote extends StatelessWidget {
-  final int index;
-  ShowNote({this.index});
+  final Note note;
+  ShowNote({this.note});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +16,9 @@ class ShowNote extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(BaseWidget.of(context).bloc.l[index].title,style: Theme.of(context).textTheme.title,),
+            Text(note.title,style: Theme.of(context).textTheme.title,),
             Divider(),
-            Text(BaseWidget.of(context).bloc.l[index].notes,style: Theme.of(context).textTheme.subtitle)
+            Text(note.notes,style: Theme.of(context).textTheme.subtitle)
           ],
         ),
       ),

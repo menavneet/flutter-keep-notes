@@ -7,7 +7,7 @@ class Note{
   Note({this.time,this.title,this.notes});
 
   void save()async{
-    time=DateTime.now().microsecondsSinceEpoch.toString();
+    time=DateTime.now().toIso8601String();
     var sp=await SharedPreferences.getInstance();
     sp.setString('$time-title',title);
     sp.setString('$time-note', notes);
