@@ -3,7 +3,8 @@
 A TODO notes app based on flutter framework
 
 ##At google play
-[Click here for downlaod app]('https://bit.ly/2FziJP7')
+
+[Click To Download](https://bit.ly/2FziJP)
 
 ## How To Run App
 Bloc Pattern App
