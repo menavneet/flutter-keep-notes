@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyTheme {
   static var getTheme = ThemeData(
-      buttonColor: Colors.yellow[300],    
-      backgroundColor: Colors.yellow[100],
-      iconTheme: IconThemeData(color: Color.fromARGB(200, 0, 0, 0)),
+      buttonColor: Colors.yellow[100],    
+      backgroundColor: Colors.yellow[50],
+      iconTheme: IconThemeData(color: Colors.black45),
       inputDecorationTheme: InputDecorationTheme(),
       buttonTheme: ButtonThemeData(buttonColor: Colors.red,splashColor: Colors.black54),
       textTheme: TextTheme(
@@ -30,5 +30,5 @@ class MyTheme {
                   letterSpacing: 2,
                   fontSize: 30,
                   color: Colors.black87)),
-          color: Colors.yellow[300]));
+          color: Colors.yellow[100]));
 }

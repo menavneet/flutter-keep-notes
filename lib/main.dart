@@ -34,11 +34,12 @@ class _MyAppState extends State<MyApp> {
           child: Column(
         children: <Widget>[
           Container(
-            color: Colors.black12,
             width: double.infinity,
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(vertical: 2),
-            child: Text('Swip  Right for remove notes'),
+            child: Text('Swip  Right for remove notes',style: TextStyle(
+              color:Colors.black26
+            ),),
           ),
           Expanded(
             child: StreamBuilder<List<Note>>(
@@ -60,24 +61,21 @@ class _MyAppState extends State<MyApp> {
                   );
                 }),
           ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.add),
-            title: Text('Create Note'),
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (context) => CreateNote())),
-          ),
+          // Divider(),
+
         ],
-      )),
-      floatingActionButton: FloatingActionButton(
-        tooltip: "Create New Note",
-        backgroundColor: Theme.of(context).buttonColor,
-        child: Icon(
-          Icons.add_comment,
-          color: Theme.of(context).iconTheme.color,
-        ),
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CreateNote())),
+      )
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child:          Container(
+            color:Colors.yellow[100],
+            child: ListTile(
+              leading: Icon(Icons.add),
+              title: Text('Create Note'),
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CreateNote())),
+            ),
+          ), 
       ),
     );
   }

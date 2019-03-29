@@ -7,7 +7,7 @@ void refresh()async{
   var sp=await SharedPreferences.getInstance();
   l=[];
   for (var s in sp.getStringList('notes-id')){
-    l.add(Note(time:s,title:sp.getString('$s-title'),notes:sp.getString('$s-note')));
+    l.add(Note(time:s,title:sp.getString('$s-title'),notes:sp.getString('$s-note'),color: sp.getInt('$s-color')));
   }
   listSink.add(l);
 }

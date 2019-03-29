@@ -14,7 +14,10 @@ This app use shared preference for storing data
 
  1. Run "flutter run" on terminal/cmd
 
+## New Update
+- Edit Option Added
+- Color Option Added
+
 ###Futur Work to do
-- Add Edit option
-- Add Color option
+- Add a SearchBar
 - Enhancing appearance

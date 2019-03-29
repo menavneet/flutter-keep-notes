@@ -1,26 +1,33 @@
 import 'package:flutter/material.dart';
 import 'note.dart';
 
-class CreateNote extends StatefulWidget {
+class EditNote extends StatefulWidget {
+ final Note note;
+  EditNote({this.note});
   @override
-  _CreateNoteState createState() => _CreateNoteState();
+  _EditNoteState createState() => _EditNoteState(note: this.note);
 }
 
-class _CreateNoteState extends State<CreateNote> {
-  Note note = Note();
+class _EditNoteState extends State<EditNote> {
+  Note note;
+  _EditNoteState({this.note});
   var formKey = GlobalKey<FormState>();
-
-  void changeColor(Color c) {
+   void changeColor(Color c) {
     setState(() {
-      this.note.color = c.value;
+      this.note.color=c.value;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Note'),
+        title: Text('Edit Note'),
+        // actions: <Widget>[
+        //   IconButton(
+        //     onPressed: () {note.update();Navigator.pop(context);}, //Delete Button
+        //     icon: Icon(Icons.edit),
+        //   )
+        // ],
       ),
       body: Container(
         padding: EdgeInsets.all(15),
@@ -32,6 +39,7 @@ class _CreateNoteState extends State<CreateNote> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  initialValue: note.title,
                   onSaved: (s) => note.title = s,
                   validator: (s) => (s.length > 2 ? null : 'Write Something'),
                   maxLength: 50,
@@ -46,6 +54,7 @@ class _CreateNoteState extends State<CreateNote> {
                   height: 20,
                 ),
                 TextFormField(
+                  initialValue: note.notes,
                   onSaved: (s) => note.notes = s,
                   validator: (s) => s.length > 2 ? null : 'Write Some Note',
                   textCapitalization: TextCapitalization.sentences,
@@ -54,7 +63,7 @@ class _CreateNoteState extends State<CreateNote> {
                   style: Theme.of(context).textTheme.subtitle,
                   decoration: InputDecoration.collapsed(hintText: 'Write Note'),
                 ),
-                ButtonBar(
+                  ButtonBar(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     CircleAvatar(
@@ -114,33 +123,41 @@ class _CreateNoteState extends State<CreateNote> {
           ),
         ),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Theme.of(context).buttonColor,
+      //   onPressed: () {
+      //     if(formKey.currentState.validate()){
+      //     formKey.currentState.save();
+      //     note.update();
+      //     Navigator.pop(context);
+      //     }
+      //   }, //Save Button
+      //   child: Icon(
+      //     Icons.save,
+      //     color: Theme.of(context).iconTheme.color,
+      //   ),
+      // ),
       bottomNavigationBar: BottomAppBar(
         color: Theme.of(context).buttonColor,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              }, //Cancel Button
-
-              child: Row(
-                children: <Widget>[Icon(Icons.cancel,color: Theme.of(context).iconTheme.color,),SizedBox(width: 3,), Text('Cancel')],
-              ),
-            ),
-            FlatButton(
-              onPressed: () {
-                if (formKey.currentState.validate()) {
-                  formKey.currentState.save();
-                  note.save();
+                onPressed: () {
                   Navigator.pop(context);
-                }
-              }, //Save Button
-
-              child: Row(
-                children: <Widget>[Icon(Icons.save,color: Theme.of(context).iconTheme.color,),SizedBox(width: 3,),Text('Save')],
-              ),
-            ),
+                },
+                child:
+                    Row(children: <Widget>[Icon(Icons.cancel,color: Theme.of(context).iconTheme.color,), Text('Canel')])),
+            FlatButton(
+                onPressed: () {
+                  if(formKey.currentState.validate()){
+                    formKey.currentState.save();
+                  note.update();
+                  Navigator.pop(context);
+                  }
+                },
+                child: Row(
+                    children: <Widget>[Icon(Icons.mode_edit,color: Theme.of(context).iconTheme.color,), Text('Update')])),
           ],
         ),
       ),
