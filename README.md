@@ -18,6 +18,6 @@ This app use shared preference for storing data
 - Edit Option Added
 - Color Option Added
 
-###Futur Work to do
+## Futur Work to do
 - Add a SearchBar
 - Enhancing appearance
