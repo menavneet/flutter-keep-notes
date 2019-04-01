@@ -20,4 +20,5 @@ This app use shared preference for storing data
 
 ## Futur Work to do
 - Add a SearchBar
+- Add Database
 - Enhancing appearance
